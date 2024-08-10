@@ -1,32 +1,45 @@
-# FastAPI Image Processing Service
+# MiniCPM-V2.5 多模态大语言模型API服务支持图片输入
 
-## Project Overview
+## 项目简介
 
-This is an image processing service built with FastAPI. Users can upload image files and provide a text prompt, and the service will use the `MiniCPM-Llama3` model to process the image and generate a corresponding text result.
+本项目提供了基于 **MiniCPM-V2.5** 多模态大语言模型的 API 服务。MiniCPM-V2.5 是一款强大的多模态模型，能够同时处理图像和文本输入，并生成与之相关的高质量文本输出。通过这个 API，用户可以轻松集成 MiniCPM-V2.5 的能力，将其应用于智能问答、内容生成、视觉理解等领域。
 
-## Installation Dependencies
+## 核心功能
 
-Before running this project, make sure you have installed the following dependencies:
+- **多模态处理**：支持同时处理图像和文本输入，生成上下文相关的文本结果。
+- **高效推理**：支持 GPU 加速推理，适用于大规模数据处理。
+- **灵活调用**：通过简单的 API 接口，即可轻松集成到各种应用场景中。
+
+## 快速开始
+
+### 环境要求
+
+在开始使用之前，请确保已安装以下依赖：
 
 ```bash
 pip install fastapi uvicorn aiofiles aiohttp pillow transformers torch
-How to Run
-You can start the service with the following command:
+运行服务
+使用以下命令启动 FastAPI 服务：
 
 bash
 复制代码
 uvicorn main:app --host 0.0.0.0 --port 8000 --log-level info
-After starting the service, you can access the /process_file endpoint via a POST request.
+服务启动后，用户可以通过 POST 请求访问 /process_file 端点，传入图像文件和文本提示，获得模型生成的文本结果。
 
-API Usage
-Endpoint: /process_file
-Method: POST
-Parameters:
-prompt: Form parameter, the text prompt provided by the user.
-file: Uploaded image file (supports BMP, JPG, etc.).
-Response:
-Success: Returns the generated text result in the format {"results": {"generated_text": "..."}}.
-Failure: Returns HTTP error code and error message.
-Notes
-Ensure that GPU is correctly configured to accelerate the inference process.
-Only specific image formats are supported.
+API 端点说明
+POST /process_file
+参数：
+prompt：文本提示，作为模型生成文本的上下文。
+file：上传的图像文件（支持 BMP, JPG 等格式）。
+响应：
+成功返回生成的文本结果。
+失败返回错误信息。
+项目架构
+本项目基于 FastAPI 构建，具备高效、灵活、易扩展的特点。通过简单易用的接口，用户可以无缝调用 MiniCPM-V2.5 模型的多模态处理能力。FastAPI 的异步特性和 CORS 支持，使得服务能够在复杂网络环境中高效运行。
+
+应用场景
+MiniCPM-V2.5 的多模态 API 服务适用于多种场景，包括但不限于：
+
+智能问答系统：根据图像和文本提示生成自然语言回答。
+内容生成：根据用户提供的多模态输入，自动生成文章、描述等文本内容。
+视觉理解：对图像内容进行语言化描述，辅助视觉信息的理解和处理。
