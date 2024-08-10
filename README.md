@@ -1,4 +1,3 @@
-markdown
 # MiniCPM-V2.5 多模态大语言模型 API 服务支持图片输入
 
 ## 项目简介
@@ -19,29 +18,36 @@ markdown
 
 ```bash
 pip install fastapi uvicorn aiofiles aiohttp pillow transformers torch
-运行服务
-使用以下命令启动 API 服务：
+```
 
-bash
+### 运行服务
+使用以下命令启动API服务：
+
+```bash
 uvicorn main:app --host 0.0.0.0 --port 8000 --log-level info
+```
+
 服务启动后，用户可以通过 POST 请求访问 /process_file 端点，传入图像文件和文本提示，获得模型生成的文本结果。
 
 API 端点说明
+```bash
 POST /process_file
-参数：
-
+```
+### 参数：
 prompt：文本提示，作为模型生成文本的上下文。
 file：上传的图像文件（支持 BMP, JPG 等格式）。
-响应：
 
+### 响应：
 成功：返回生成的文本结果。
 失败：返回错误信息。
-项目架构
+
+### 项目架构
 本项目基于 FastAPI 构建，具备高效、灵活、易扩展的特点。通过简单易用的接口，用户可以无缝调用 MiniCPM-V2.5 模型的多模态处理能力。FastAPI 的异步特性和 CORS 支持，使得服务能够在复杂网络环境中高效运行。
 
-应用场景
+### 应用场景
 MiniCPM-V2.5 的多模态 API 服务适用于多种场景，包括但不限于：
 
 智能问答系统：根据图像和文本提示生成自然语言回答。
 内容生成：根据用户提供的多模态输入，自动生成文章、描述等文本内容。
 视觉理解：对图像内容进行语言化描述，辅助视觉信息的理解和处理。
+
